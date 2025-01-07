@@ -1,0 +1,29 @@
+spring:
+  config:
+    activate:
+      on-profile: default
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/loadsdb
+    username: user
+    password: password
+    pool:
+        enabled: true   
+        max-size: 20
+        initial-size: 10
+
+eureka:
+  instance:
+    # enable to register multiple app instances with a random server port
+    instance-id: ${spring.application.name}:${random.uuid}
+
+---
+spring:
+  config:
+    activate:
+      on-profile: docker
+server:
+  port: 8081
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discovery-server:8761/eureka/
