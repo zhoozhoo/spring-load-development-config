@@ -16,8 +16,8 @@ spring:
 eureka:
   instance:
     instance-id: ${spring.application.name}:${random.uuid}
-    leaseRenewalIntervalInSeconds: 30
-    leaseExpirationDurationInSeconds: 90
+    instance.lease-renewal-interval-in-seconds: 30
+    lease-expiration-duration-in-seconds: 90
 
 ---
 spring:
@@ -31,8 +31,8 @@ eureka:
     serviceUrl:
       defaultZone: http://discovery-server:8761/eureka/
   instance:
-    leaseRenewalIntervalInSeconds: 30
-    leaseExpirationDurationInSeconds: 90
+    instance.lease-renewal-interval-in-seconds: 30
+    lease-expiration-duration-in-seconds: 90
 
 management:
   zipkin:
