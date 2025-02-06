@@ -7,3 +7,12 @@ spring:
     config:
       allow-override: true
       override-none: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health, info
+  tracing:
+    sampling:
+      probability: 1
