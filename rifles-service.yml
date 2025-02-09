@@ -1,0 +1,34 @@
+spring:
+  config:
+    activate:
+      on-profile: default
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/loadsdb
+    username: user
+    password: password
+    pool:
+        enabled: true   
+        max-size: 20
+        initial-size: 10
+  sql:
+    init:
+      mode: always  
+eureka:
+  instance:
+    instance-id: ${spring.application.name}:${random.uuid}
+
+---
+spring:
+  config:
+    activate:
+      on-profile: docker
+server:
+  port: 8082
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://discovery-server:8761/eureka/
+management:
+  zipkin:
+    tracing:
+      endpoint: http://tracing-server:9411/api/v2/spans
