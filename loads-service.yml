@@ -27,6 +27,17 @@ spring:
   config:
     activate:
       on-profile: docker
+  r2dbc:
+    url: r2dbc:postgresql://db:5432/loadsdb
+    username: user
+    password: password
+    pool:
+        enabled: true   
+        max-size: 20
+        initial-size: 10
+  sql:
+    init:
+      mode: always  
 server:
   port: 8081
 eureka:
