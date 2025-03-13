@@ -27,6 +27,11 @@ spring:
   config:
     activate:
       on-profile: docker
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://keycloak:7080/realms/reloading/protocol/openid-connect/certs
   r2dbc:
     url: r2dbc:postgresql://db:5432/loadsdb
     username: user
