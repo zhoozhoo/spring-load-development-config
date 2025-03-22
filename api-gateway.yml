@@ -12,12 +12,12 @@ spring:
           keycloak:
             issuer-uri: http://localhost:7080/realms/reloading
         registration:
-          spring-with-test-scope:
+          api-gateway:
             provider: keycloak
             client-id: api-gateway
             client-secret: AWTw2q0fwMAFW36M3qhrGnTMARIc8Dis 
             authorization-grant-type: authorization_code
-            scope: openid
+            scope: openid,profile
   cloud:
     gateway:
       default-filters:
@@ -59,12 +59,12 @@ spring:
           keycloak:
             issuer-uri: http://keycloak:7080/realms/reloading
         registration:
-          spring-with-test-scope:
+          gateway-with-test-scope:
             provider: keycloak
             client-id: api-gateway
             client-secret: AWTw2q0fwMAFW36M3qhrGnTMARIc8Dis 
             authorization-grant-type: authorization_code
-            scope: openid
+            scope: openid,profile
 eureka:
   client:
     serviceUrl:
