@@ -10,9 +10,9 @@ spring:
       client:
         provider:
           keycloak:
-            token-uri: http://keycloak:7080/realms/reloading/protocol/openid-connect/token
-            authorization-uri: http://keycloak:7080/realms/reloading/protocol/openid-connect/auth
-            issuer-uri: http://keycloak:7080/realms/reloading
+            token-uri: http://localhost:7080/realms/reloading/protocol/openid-connect/token
+            authorization-uri: http://localhost:7080/realms/reloading/protocol/openid-connect/auth
+            issuer-uri: http://localhost:7080/realms/reloading
         registration:
           api-gateway:
             provider: keycloak
