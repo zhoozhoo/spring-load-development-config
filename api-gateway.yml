@@ -18,8 +18,8 @@ spring:
             provider: keycloak
             client-id: reloading-client
             client-secret: 2EvQuluZfxaaRms8V4NhzBDWzVCSXtty 
-            authorization-grant-type: authorization_code
-            audience: urn:ietf:params:oauth:grant-type:uma-ticket
+            authorization-grant-type: urn:ietf:params:oauth:grant-type:uma-ticket
+            audience: reloading-client
             scope: 
               - openid
               - email
