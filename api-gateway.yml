@@ -16,8 +16,8 @@ spring:
         registration:
           api-gateway:
             provider: keycloak
-            client-id: api-gateway
-            client-secret: Wu9MRLCjFiu56k5QdCuMuFmR5i2CgEi5 
+            client-id: reloading-client
+            client-secret: 2EvQuluZfxaaRms8V4NhzBDWzVCSXtty 
             authorization-grant-type: authorization_code
             scope: 
               - openid
@@ -70,8 +70,8 @@ spring:
         registration:
           gateway-with-test-scope:
             provider: keycloak
-            client-id: api-gateway
-            client-secret: Wu9MRLCjFiu56k5QdCuMuFmR5i2CgEi5 
+            client-id: reloading-client
+            client-secret: 2EvQuluZfxaaRms8V4NhzBDWzVCSXtty 
             authorization-grant-type: authorization_code
             scope: 
               - openid
