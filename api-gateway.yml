@@ -4,6 +4,9 @@ server:
 spring:
   security:
     oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:7080/realms/reloading/protocol/openid-connect/certs
       client:
         provider:
           keycloak:
@@ -55,6 +58,9 @@ spring:
       on-profile: docker
   security:
     oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://keycloak:7080/realms/reloading/protocol/openid-connect/certs
       client:
         provider:
           keycloak:
