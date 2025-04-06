@@ -4,9 +4,6 @@ server:
 spring:
   security:
     oauth2:
-      resourceserver:
-        jwt:
-          jwk-set-uri: http://localhost:7080/realms/reloading/protocol/openid-connect/certs
       client:
         provider:
           keycloak:
@@ -19,7 +16,6 @@ spring:
             client-id: reloading-client
             client-secret: 2EvQuluZfxaaRms8V4NhzBDWzVCSXtty 
             authorization-grant-type: urn:ietf:params:oauth:grant-type:uma-ticket
-            audience: reloading-client
             scope: 
               - openid
               - email
@@ -59,9 +55,6 @@ spring:
       on-profile: docker
   security:
     oauth2:
-      resourceserver:
-        jwt:
-          jwk-set-uri: http://keycloak:7080/realms/reloading/protocol/openid-connect/certs
       client:
         provider:
           keycloak:
@@ -73,7 +66,7 @@ spring:
             provider: keycloak
             client-id: reloading-client
             client-secret: 2EvQuluZfxaaRms8V4NhzBDWzVCSXtty 
-            authorization-grant-type: authorization_code
+            authorization-grant-type: urn:ietf:params:oauth:grant-type:uma-ticket
             scope: 
               - openid
               - email
