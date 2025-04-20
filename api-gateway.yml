@@ -54,7 +54,14 @@ spring:
           filters:
             - StripPrefix=2
             - TokenForwarding
-
+        - id: fallback-route
+          order: 100
+          uri: no://op
+          predicates:
+            - Path=/**
+          filters:
+            - SetPath=/${path}
+            - RewritePath=/(?<segment>.*), /${segment}
 ---
 spring:
   config:
