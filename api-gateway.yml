@@ -29,16 +29,6 @@ spring:
       base-url: http://localhost:7080             
   cloud:
     gateway:
-      default-filters:
-        - name: CircuitBreaker
-          args:
-            name: defaultCircuitBreaker
-            fallbackUri: forward:/fallback
-        - name: Retry
-          args:
-            retries: 1
-            statuses: SERVICE_UNAVAILABLE
-            methods: POST
       routes:
         - id: loads-service
           uri: lb://loads-service
@@ -47,6 +37,11 @@ spring:
           filters:
             - StripPrefix=2
             - TokenForwarding
+            - name: CircuitBreaker
+              args:
+                name: loadsCircuitBreaker
+                fallbackUri: forward:/fallback
+            - Retry=1
         - id: rifles-service
           uri: lb://rifles-service
           predicates:
@@ -54,11 +49,16 @@ spring:
           filters:
             - StripPrefix=2
             - TokenForwarding
+            - name: CircuitBreaker
+              args:
+                name: riflesCircuitBreaker
+                fallbackUri: forward:/fallback
+            - Retry=1
         - id: fallback-route
           order: 100
           uri: no://op
           predicates:
-            - Path=/**
+            - Path=/
           filters:
             - SetPath=/${path}
             - RewritePath=/(?<segment>.*), /${segment}
