@@ -72,7 +72,7 @@ spring:
             authorization-uri: http://keycloak:7080/realms/reloading/protocol/openid-connect/auth
             issuer-uri: http://keycloak:7080/realms/reloading
         registration:
-          gateway-with-test-scope:
+          api-gateway:
             provider: keycloak
             client-id: reloading-client
             client-secret: 2EvQuluZfxaaRms8V4NhzBDWzVCSXtty 
