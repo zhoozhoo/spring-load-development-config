@@ -24,6 +24,9 @@ spring:
               - email
               - profile
               - roles
+  weclient:
+    keycloak:
+      base-url: http://localhost:7080/
   reactor:
     context-propagation: AUTO
   cloud:
@@ -88,6 +91,9 @@ spring:
               - email
               - profile
               - roles
+  weclient:
+    keycloak:
+      base-url: http://keycloak:7080/
 eureka:
   client:
     serviceUrl:
