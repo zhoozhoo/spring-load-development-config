@@ -24,7 +24,7 @@ spring:
               - email
               - profile
               - roles
-  weclient:
+  webclient:
     keycloak:
       base-url: http://localhost:7080/
   reactor:
@@ -91,7 +91,7 @@ spring:
               - email
               - profile
               - roles
-  weclient:
+  webclient:
     keycloak:
       base-url: http://keycloak:7080/
 eureka:
