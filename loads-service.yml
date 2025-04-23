@@ -21,6 +21,11 @@ spring:
 eureka:
   instance:
     instance-id: ${spring.application.name}:${random.uuid}
+management:
+  otlp:
+    tracing:
+      endpoint: http://localhost:4317
+      transport: grpc
 
 ---
 spring:
@@ -50,6 +55,7 @@ eureka:
     serviceUrl:
       defaultZone: http://discovery-server:8761/eureka/
 management:
-  zipkin:
+  otlp:
     tracing:
-      endpoint: http://tracing-server:9411/api/v2/spans
+      endpoint: http://jaeger:4317
+      transport: grpc
