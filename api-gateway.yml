@@ -37,7 +37,7 @@ spring:
           predicates:
             - Path=/api/loads/**, /loads-service/v3/api-docs
           filters:
-            - StripPrefix=2
+            - StripPrefix=1
             - TokenForwarding
             - name: CircuitBreaker
               args:
@@ -49,7 +49,7 @@ spring:
           predicates:
             - Path=/api/rifles/**, /rifles-service/v3/api-docs
           filters:
-            - StripPrefix=2
+            - StripPrefix=1
             - TokenForwarding
             - name: CircuitBreaker
               args:
