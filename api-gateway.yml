@@ -42,7 +42,6 @@ spring:
             - name: CircuitBreaker
               args:
                 name: loadsCircuitBreaker
-                fallbackUri: forward:/fallback
             - Retry=1
         - id: rifles-service
           uri: lb://rifles-service
@@ -54,7 +53,6 @@ spring:
             - name: CircuitBreaker
               args:
                 name: riflesCircuitBreaker
-                fallbackUri: forward:/fallback
             - Retry=1
         - id: fallback-route
           order: 100
