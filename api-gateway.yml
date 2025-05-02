@@ -35,7 +35,7 @@ spring:
         - id: loads-service
           uri: lb://loads-service
           predicates:
-            - Path=/api/loads/**, /api/groups/**, /api/shots/**, /loads-service/v3/api-docs
+            - Path=/api/loads/{segment},/api/groups/{segment},/api/shots/{segment},/loads-service/v3/api-docs
           filters:
             - StripPrefix=1
             - TokenForwarding
@@ -46,7 +46,7 @@ spring:
         - id: rifles-service
           uri: lb://rifles-service
           predicates:
-            - Path=/api/rifles/**, /rifles-service/v3/api-docs
+            - Path=/api/rifles/{segment},/rifles-service/v3/api-docs
           filters:
             - StripPrefix=1
             - TokenForwarding
