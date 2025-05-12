@@ -54,6 +54,31 @@ spring:
               args:
                 name: riflesCircuitBreaker
             - Retry=1
+        - id: mcp-server
+          uri: lb://mcp-server
+          predicates:
+            - Path=/api/mcp/**
+          filters:
+            - StripPrefix=1
+            - TokenForwarding
+            - name: CircuitBreaker
+              args:
+                name: mcpCircuitBreaker
+            - Retry=1
+        - id: mcp-server-sse
+          uri: lb://mcp-server
+          predicates:
+            - Path=/api/sse/**
+          filters:
+            - StripPrefix=1
+            - TokenForwarding
+            - name: CircuitBreaker
+              args:
+                name: mcpSseCircuitBreaker
+                fallbackUri: forward:/fallback
+          metadata:
+            connect-timeout: 45000
+            response-timeout: 45000
         - id: fallback-route
           order: 100
           uri: no://op
