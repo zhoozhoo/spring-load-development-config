@@ -60,9 +60,8 @@ spring:
         - id: mcp-server
           uri: lb://mcp-server
           predicates:
-            - Path=/api/mcp/**
+            - Path=/mcp/**
           filters:
-            - StripPrefix=1
             - TokenForwarding
             - name: CircuitBreaker
               args:
@@ -71,9 +70,8 @@ spring:
         - id: mcp-server-sse
           uri: lb://mcp-server
           predicates:
-            - Path=/api/sse/**
+            - Path=/sse/**
           filters:
-            - StripPrefix=1
             - TokenForwarding
             - name: CircuitBreaker
               args:
