@@ -6,19 +6,22 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: http://localhost:7080/realms/reloading/protocol/openid-connect/certs
+          jwk-set-uri: ${KEYCLOAK_BASE_URL:http://localhost:7080}/realms/reloading/protocol/openid-connect/certs
       client:
         provider:
           keycloak:
-            token-uri: http://localhost:7080/realms/reloading/protocol/openid-connect/token
-            authorization-uri: http://localhost:7080/realms/reloading/protocol/openid-connect/auth
-            issuer-uri: http://localhost:7080/realms/reloading
+            token-uri: ${KEYCLOAK_BASE_URL:http://localhost:7080}/realms/reloading/protocol/openid-connect/token
+            authorization-uri: ${KEYCLOAK_BASE_URL:http://localhost:7080}/realms/reloading/protocol/openid-connect/auth
+            issuer-uri: ${KEYCLOAK_BASE_URL:http://localhost:7080}/realms/reloading
+            user-info-uri: ${KEYCLOAK_BASE_URL:http://localhost:7080}/realms/reloading/protocol/openid-connect/userinfo
+            jwk-set-uri: ${KEYCLOAK_BASE_URL:http://localhost:7080}/realms/reloading/protocol/openid-connect/certs
         registration:
           api-gateway:
             provider: keycloak
             client-id: reloading-client
             client-secret: 2EvQuluZfxaaRms8V4NhzBDWzVCSXtty 
-            authorization-grant-type: urn:ietf:params:oauth:grant-type:uma-ticket
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/keycloak"
             scope: 
               - openid
               - email
@@ -26,7 +29,7 @@ spring:
               - roles
   webclient:
     keycloak:
-      base-url: http://localhost:7080             
+      base-url: ${KEYCLOAK_BASE_URL:http://localhost:7080}             
   reactor:
     context-propagation: AUTO
   cloud:
@@ -87,10 +90,14 @@ spring:
           filters:
             - SetPath=/${path}
             - RewritePath=/(?<segment>.*), /${segment}
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${DISCOVERY_SERVER:http://localhost:8761}/eureka/ 
 management:
   otlp:
     tracing:
-      endpoint: http://localhost:4317
+      endpoint: ${TRACING_SERVER:http://localhost:4317/}
       transport: grpc
 springdoc:
   enable-native-support: true
@@ -107,42 +114,3 @@ springdoc:
       - url: /loads-service/v3/api-docs
         name: Loads Service
         primaryName: Loads Service
----
-spring:
-  config:
-    activate:
-      on-profile: docker
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          jwk-set-uri: http://keycloak:7080/realms/reloading/protocol/openid-connect/certs
-      client:
-        provider:
-          keycloak:
-            token-uri: http://keycloak:7080/realms/reloading/protocol/openid-connect/token
-            authorization-uri: http://keycloak:7080/realms/reloading/protocol/openid-connect/auth
-            issuer-uri: http://keycloak:7080/realms/reloading
-        registration:
-          api-gateway:
-            provider: keycloak
-            client-id: reloading-client
-            client-secret: 2EvQuluZfxaaRms8V4NhzBDWzVCSXtty 
-            authorization-grant-type: urn:ietf:params:oauth:grant-type:uma-ticket
-            scope: 
-              - openid
-              - email
-              - profile
-              - roles
-  webclient:
-    keycloak:
-      base-url: http://keycloak:7080             
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://discovery-server:8761/eureka/
-management:
-  otlp:
-    tracing:
-      endpoint: http://jaeger:4317
-      transport: grpc
