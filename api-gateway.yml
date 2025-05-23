@@ -42,6 +42,7 @@ spring:
           filters:
             - StripPrefix=1
             - TokenForwarding
+            - TokenRelay=
             - name: CircuitBreaker
               args:
                 name: loadsCircuitBreaker
@@ -53,6 +54,7 @@ spring:
           filters:
             - StripPrefix=1
             - TokenForwarding
+            - TokenRelay=
             - name: CircuitBreaker
               args:
                 name: riflesCircuitBreaker
@@ -63,6 +65,7 @@ spring:
             - Path=/mcp/**
           filters:
             - TokenForwarding
+            - TokenRelay=
             - name: CircuitBreaker
               args:
                 name: mcpCircuitBreaker
@@ -73,6 +76,7 @@ spring:
             - Path=/sse/**
           filters:
             - TokenForwarding
+            - TokenRelay=
             - name: CircuitBreaker
               args:
                 name: mcpSseCircuitBreaker
