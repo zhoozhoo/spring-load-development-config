@@ -10,6 +10,11 @@ spring:
         type: ASYNC
         sse-message-endpoint: /mcp/messages
         tool-change-notification: true
+        capabilities:
+          tool: true
+          resource: false
+          prompt: false
+          completion: false
   security:
     oauth2:
       resourceserver:
