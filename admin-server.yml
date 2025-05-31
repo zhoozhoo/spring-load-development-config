@@ -1,12 +1,6 @@
 server:
   port: 9090
-
----
-spring:
-  config:
-    activate:
-      on-profile: docker
 eureka:
   client:
     serviceUrl:
-      defaultZone: http://discovery-server:8761/eureka/
+      defaultZone: ${DISCOVERY_SERVER:http://localhost:8761}/eureka/ 
