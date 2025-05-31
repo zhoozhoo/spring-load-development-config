@@ -1,7 +1,4 @@
 spring:
-  config:
-    activate:
-      on-profile: default
   r2dbc:
     url: ${SPRING_R2DBC_URL:r2dbc:postgresql://localhost:5432/loadsdb}
     username: ${SPRING_R2DBC_USERNAME:user}
