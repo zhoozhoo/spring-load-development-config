@@ -1,0 +1,39 @@
+spring:
+  r2dbc:
+    url: ${SPRING_R2DBC_URL:r2dbc:postgresql://localhost:5432/loadsdb}
+    username: ${SPRING_R2DBC_USERNAME:user}
+    password: ${SPRING_R2DBC_PASSWORD:password}
+    pool:
+        enabled: true   
+        max-size: 20
+        initial-size: 10
+  sql:
+    init:
+      mode: always  
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${KEYCLOAK_BASE_URL:http://localhost:7080}/realms/reloading
+          jwk-set-uri: ${KEYCLOAK_BASE_URL:http://localhost:7080}/realms/reloading/protocol/openid-connect/certs
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${DISCOVERY_SERVER:http://localhost:8761}/eureka/ 
+  instance:
+    instance-id: ${spring.application.name}:${random.uuid}
+
+management:
+  otlp:
+    tracing:
+      endpoint: ${TRACING_SERVER:http://localhost:4317/}
+      transport: grpc
+
+---
+spring:
+  config:
+    activate:
+      on-profile: docker
+server:
+  port: 8084
