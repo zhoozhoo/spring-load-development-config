@@ -34,76 +34,78 @@ spring:
     context-propagation: AUTO
   cloud:
     gateway:
-      routes:
-        - id: loads-service
-          uri: lb://loads-service
-          predicates:
-            - Path=/api/loads/**,/api/groups/**,/api/shots/**,/loads-service/v3/api-docs
-          filters:
-            - StripPrefix=1
-            - TokenForwarding
-            - TokenRelay=
-            - name: CircuitBreaker
-              args:
-                name: loadsCircuitBreaker
-            - Retry=1
-        - id: rifles-service
-          uri: lb://rifles-service
-          predicates:
-            - Path=/api/rifles/**,/rifles-service/v3/api-docs
-          filters:
-            - StripPrefix=1
-            - TokenForwarding
-            - TokenRelay=
-            - name: CircuitBreaker
-              args:
-                name: riflesCircuitBreaker
-            - Retry=1
-        - id: components-service
-          uri: lb://components-service
-          predicates:
-            - Path=/api/bullets/**,/api/cases/**,/api/powders/**,/api/primers/**,/components-service/v3/api-docs
-          filters:
-            - StripPrefix=1
-            - TokenForwarding
-            - TokenRelay=
-            - name: CircuitBreaker
-              args:
-                name: componentsCircuitBreaker
-            - Retry=1
-        - id: mcp-server
-          uri: lb://mcp-server
-          predicates:
-            - Path=/mcp/**
-          filters:
-            - TokenForwarding
-            - TokenRelay=
-            - name: CircuitBreaker
-              args:
-                name: mcpCircuitBreaker
-            - Retry=1
-        - id: mcp-server-sse
-          uri: lb://mcp-server
-          predicates:
-            - Path=/sse/**
-          filters:
-            - TokenForwarding
-            - TokenRelay=
-            - name: CircuitBreaker
-              args:
-                name: mcpSseCircuitBreaker
-                fallbackUri: forward:/fallback
-          metadata:
-            connect-timeout: 45000
-            response-timeout: 45000
-        - id: fallback-route
-          order: 100
-          uri: no://op
-          predicates:
-            - Path=/
-          filters:
-            - SetPath=/${path}
-            - RewritePath=/(?<segment>.*), /${segment}
+      server:
+        webflux:
+          routes:
+            - id: loads-service
+              uri: lb://loads-service
+              predicates:
+                - Path=/api/loads/**,/api/groups/**,/api/shots/**,/loads-service/v3/api-docs
+              filters:
+                - StripPrefix=1
+                - TokenForwarding
+                - TokenRelay=
+                - name: CircuitBreaker
+                  args:
+                    name: loadsCircuitBreaker
+                - Retry=1
+            - id: rifles-service
+              uri: lb://rifles-service
+              predicates:
+                - Path=/api/rifles/**,/rifles-service/v3/api-docs
+              filters:
+                - StripPrefix=1
+                - TokenForwarding
+                - TokenRelay=
+                - name: CircuitBreaker
+                  args:
+                    name: riflesCircuitBreaker
+                - Retry=1
+            - id: components-service
+              uri: lb://components-service
+              predicates:
+                - Path=/api/bullets/**,/api/cases/**,/api/powders/**,/api/primers/**,/components-service/v3/api-docs
+              filters:
+                - StripPrefix=1
+                - TokenForwarding
+                - TokenRelay=
+                - name: CircuitBreaker
+                  args:
+                    name: componentsCircuitBreaker
+                - Retry=1
+            - id: mcp-server
+              uri: lb://mcp-server
+              predicates:
+                - Path=/mcp/**
+              filters:
+                - TokenForwarding
+                - TokenRelay=
+                - name: CircuitBreaker
+                  args:
+                    name: mcpCircuitBreaker
+                - Retry=1
+            - id: mcp-server-sse
+              uri: lb://mcp-server
+              predicates:
+                - Path=/sse/**
+              filters:
+                - TokenForwarding
+                - TokenRelay=
+                - name: CircuitBreaker
+                  args:
+                    name: mcpSseCircuitBreaker
+                    fallbackUri: forward:/fallback
+              metadata:
+                connect-timeout: 45000
+                response-timeout: 45000
+            - id: fallback-route
+              order: 100
+              uri: no://op
+              predicates:
+                - Path=/
+              filters:
+                - SetPath=/${path}
+                - RewritePath=/(?<segment>.*), /${segment}
 eureka:
   client:
     serviceUrl:
