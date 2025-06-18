@@ -130,3 +130,6 @@ springdoc:
       - url: /loads-service/v3/api-docs
         name: Loads Service
         primaryName: Loads Service
+      - url: /components-service/v3/api-docs
+        name: Components Service
+        primaryName: Components Service
