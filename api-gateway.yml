@@ -59,6 +59,18 @@ spring:
               args:
                 name: riflesCircuitBreaker
             - Retry=1
+        - id: components-service
+          uri: lb://components-service
+          predicates:
+            - Path=/api/bullets/**,/api/cases/**,/api/powders/**,/api/primers/**,/components-service/v3/api-docs
+          filters:
+            - StripPrefix=1
+            - TokenForwarding
+            - TokenRelay=
+            - name: CircuitBreaker
+              args:
+                name: componentsCircuitBreaker
+            - Retry=1
         - id: mcp-server
           uri: lb://mcp-server
           predicates:
