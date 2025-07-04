@@ -2,10 +2,6 @@ server:
   port: 8087
 
 spring:
-  application:
-    name: spring-loaddev-web-ui
-  
-  # OAuth2 Configuration for Keycloak
   security:
     oauth2:
       client:
@@ -30,54 +26,17 @@ spring:
               - profile
               - roles
 
-# API Gateway Configuration
 api:
   gateway:
     base-url: ${API_GATEWAY_URL:http://localhost:8080}
 
-# Service Discovery
 eureka:
   client:
-    service-url:
-      defaultZone: ${DISCOVERY_SERVER:http://localhost:8761}/eureka/
-  instance:
-    instance-id: ${spring.application.name}:${random.uuid}
-    prefer-ip-address: true
+    serviceUrl:
+      defaultZone: ${DISCOVERY_SERVER:http://localhost:8761}/eureka/ 
 
-# Actuator Configuration
 management:
-  endpoints:
-    web:
-      exposure:
-        include: health,info,metrics
-  endpoint:
-    health:
-      show-details: when-authorized
   otlp:
     tracing:
       endpoint: ${TRACING_SERVER:http://localhost:4317/}
       transport: grpc
-
-# Logging Configuration
-logging:
-  level:
-    ca.zhoozhoo.load_development.webui: INFO
-    org.springframework.security: INFO
-    org.springframework.web: INFO
-    root: INFO
-
----
-spring:
-  config:
-    activate:
-      on-profile: docker
-# API Gateway URL for Docker
-api:
-  gateway:
-    base-url: http://api-gateway:8080
-
-# Eureka for Docker
-eureka:
-  client:
-    service-url:
-      defaultZone: http://discovery-server:8761/eureka/
