@@ -7,8 +7,6 @@ spring:
     config:
       allow-override: true
       override-none: true
-  application:
-    name: ${spring.application.name:application}
 
 logging:
   config: ${CONFIG_SERVER_URL:http://localhost:8888}/log4j2.xml
