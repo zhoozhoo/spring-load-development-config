@@ -9,11 +9,8 @@ spring:
       allow-override: true
       override-none: true
 
-# logging:
-#   config: ${CONFIG_SERVER_URL:http://localhost:8888}/${spring.application.name}/default/${spring.cloud.config.label}/log4j2.xml
-
 logging:
-  config: classpath:log4j2.xml  # Change this to use config server's version
+  config: ${CONFIG_SERVER_URL:http://localhost:8888}/${spring.application.name}/default/${spring.cloud.config.label}/log4j2.xml
 
 management:
   endpoints:
