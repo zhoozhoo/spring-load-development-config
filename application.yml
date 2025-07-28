@@ -16,10 +16,7 @@ management:
   endpoints:
     web:
       exposure:
-        include: health, info, loggers
-  endpoint:
-    loggers:
-      enabled: true
+        include: health, info
   tracing:
     sampling:
       probability: 1

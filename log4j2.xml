@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Configuration status="WARN">
     <Properties>
-        <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - trace_id: %X{trace_id} span_id: %X{span_id} trace_flags: %X{trace_flags} - %msg%n</Property>
-        <Property name="APP_LOG_ROOT">/var/log/spring-load-development</Property>
+        <Property name="LOG_PATTERN">%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{36} - trace_id: %X{trace_id} span_id: %X{span_id} trace_flags: %X{trace_flags} - %msg%n</Property>
     </Properties>
 
     <Appenders>
@@ -15,30 +14,6 @@
     <Loggers>
         <!-- Application Loggers -->
         <Logger name="ca.zhoozhoo.loaddev" level="DEBUG" additivity="false">
-            <AppenderRef ref="Console"/>
-            <AppenderRef ref="OpenTelemetryAppender"/>
-        </Logger>
-
-        <!-- Spring Framework Loggers -->
-        <Logger name="org.springframework" level="INFO" additivity="false">
-            <AppenderRef ref="Console"/>
-            <AppenderRef ref="OpenTelemetryAppender"/>
-        </Logger>
-
-        <!-- Security Loggers -->
-        <Logger name="org.springframework.security" level="INFO" additivity="false">
-            <AppenderRef ref="Console"/>
-            <AppenderRef ref="OpenTelemetryAppender"/>
-        </Logger>
-
-        <!-- Database Loggers -->
-        <Logger name="io.r2dbc" level="INFO" additivity="false">
-            <AppenderRef ref="Console"/>
-            <AppenderRef ref="OpenTelemetryAppender"/>
-        </Logger>
-
-        <!-- Reactive Loggers -->
-        <Logger name="reactor.netty" level="INFO" additivity="false">
             <AppenderRef ref="Console"/>
             <AppenderRef ref="OpenTelemetryAppender"/>
         </Logger>
