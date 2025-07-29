@@ -17,7 +17,7 @@
 					<StructuredLogLayout format="${sys:CONSOLE_LOG_STRUCTURED_FORMAT}" charset="${sys:CONSOLE_LOG_CHARSET}"/>
 				</SystemPropertyArbiter>
 				<DefaultArbiter>
-					<PatternLayout pattern="${sys:CONSOLE_LOG_PATTERN}" charset="${sys:CONSOLE_LOG_CHARSET}"/>
+					<PatternLayout pattern="${sys:CONSOLE_LOG_PATTERN}" charset="${file.encoding:-UTF-8}"/>
 				</DefaultArbiter>
 			</Select>
 			<Filters>
