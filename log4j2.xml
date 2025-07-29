@@ -9,10 +9,7 @@
 
     <Appenders>
 		<Console name="Console" target="SYSTEM_OUT" follow="true">
-            <PatternLayout pattern="${sys:CONSOLE_LOG_PATTERN}" charset="${env:file.encoding:-UTF-8}"/>
-			<Filters>
-				<ThresholdFilter level="${sys:CONSOLE_LOG_THRESHOLD:-TRACE}"/>
-			</Filters>
+            <PatternLayout pattern="${sys:CONSOLE_LOG_PATTERN}" disableAnsi= "false"/>
 		</Console>
         <OpenTelemetry name="OpenTelemetryAppender"/>
     </Appenders>
