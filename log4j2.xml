@@ -11,7 +11,7 @@
     </Properties>
 
     <Appenders>
-		<Console name="Console" target="SYSTEM_OUT" follow="true" disableAnsi= "false">
+		<Console name="Console" target="SYSTEM_OUT" follow="true">
 			<Select>
 				<SystemPropertyArbiter propertyName="CONSOLE_LOG_STRUCTURED_FORMAT">
 					<StructuredLogLayout format="${sys:CONSOLE_LOG_STRUCTURED_FORMAT}" charset="${sys:CONSOLE_LOG_CHARSET}"/>
