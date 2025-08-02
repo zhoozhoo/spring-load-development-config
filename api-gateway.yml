@@ -110,11 +110,6 @@ eureka:
   client:
     serviceUrl:
       defaultZone: ${DISCOVERY_SERVER:http://localhost:8761}/eureka/ 
-management:
-  otlp:
-    tracing:
-      endpoint: ${TRACING_SERVER:http://localhost:4317/}
-      transport: grpc
 springdoc:
   enable-native-support: true
   api-docs:

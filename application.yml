@@ -20,6 +20,13 @@ management:
   tracing:
     sampling:
       probability: 1
+  otlp:
+    tracing:
+      endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4317}
+      transport: grpc
+    logging:
+      endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4317}
+      transport: grpc 
 
 log4j2:
   Configuration:
