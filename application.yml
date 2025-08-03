@@ -14,6 +14,9 @@ logging:
 
 management:
   endpoints:
+    health:
+      probes:
+        enabled: true    
     web:
       exposure:
         include: health, info
