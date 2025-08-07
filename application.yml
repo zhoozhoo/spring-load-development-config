@@ -16,10 +16,12 @@ management:
   endpoint:
     health:
       show-details: always
+      probes:
+        enabled: true
   endpoints:
     web:
       exposure:
-        include: health, info
+        include: "*"
   metrics:
     enable:
       all: true
@@ -40,4 +42,4 @@ management:
 
 log4j2:
   Configuration:
-    allowedProtocols: "http,https"
+    allowedProtocols: "http,https,file,jar"
