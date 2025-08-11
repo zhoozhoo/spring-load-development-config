@@ -29,12 +29,12 @@ management:
     metrics:
       export:
         step: 10s
-        url: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4317}
+        url: ${OTEL_COLLECTOR_ENDPOINT:http://localhost:4317}
     tracing:
-      endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4317}
+      endpoint: ${OTEL_COLLECTOR_ENDPOINT:http://localhost:4317}
       transport: grpc
     logging:
-      endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4317}
+      endpoint: ${OTEL_COLLECTOR_ENDPOINT:http://localhost:4317}
       transport: grpc 
 
 logging:
