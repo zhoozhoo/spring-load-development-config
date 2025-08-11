@@ -9,9 +9,6 @@ spring:
       allow-override: true
       override-none: true
 
-logging:
-  config: ${CONFIG_SERVER_URL:http://localhost:8888}/${spring.application.name}/default/${spring.cloud.config.label}/log4j2.xml
-
 management:
   endpoint:
     health:
@@ -29,16 +26,19 @@ management:
     sampling:
       probability: 1
   otlp:
-    # metrics:
-    #   export:
-    #     step: 10s
-    #     url: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4317}
+    metrics:
+      export:
+        step: 10s
+        url: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4317}
     tracing:
       endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4317}
       transport: grpc
-    # logging:
-    #   endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4317}
-    #   transport: grpc 
+    logging:
+      endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4317}
+      transport: grpc 
+
+logging:
+  config: ${CONFIG_SERVER_URL:http://localhost:8888}/${spring.application.name}/default/${spring.cloud.config.label}/log4j2.xml
 
 log4j2:
   Configuration:
