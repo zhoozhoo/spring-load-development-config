@@ -29,16 +29,16 @@ management:
     sampling:
       probability: 1
   otlp:
-    metrics:
-      export:
-        step: 10s
-        url: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4317}
+    # metrics:
+    #   export:
+    #     step: 10s
+    #     url: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4317}
     tracing:
       endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4317}
       transport: grpc
-    logging:
-      endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4317}
-      transport: grpc 
+    # logging:
+    #   endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4317}
+    #   transport: grpc 
 
 log4j2:
   Configuration:
