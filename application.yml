@@ -28,7 +28,7 @@ management:
   otlp:
     metrics:
       export:
-        step: 10s
+        step: 30s
         url: ${OTEL_COLLECTOR_ENDPOINT:http://localhost:4317}
     tracing:
       endpoint: ${OTEL_COLLECTOR_ENDPOINT:http://localhost:4317}
@@ -49,3 +49,4 @@ otel:
     otlp:
       endpoint: ${OTEL_COLLECTOR_ENDPOINT:http://localhost:4317}
       protocol: grpc
+      interval: 30000
