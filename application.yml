@@ -25,17 +25,17 @@ management:
   tracing:
     sampling:
       probability: 1
-  otlp:
-    metrics:
-      export:
-        step: 30s
-        url: ${OTEL_COLLECTOR_ENDPOINT:http://localhost:4317}
-    tracing:
-      endpoint: ${OTEL_COLLECTOR_ENDPOINT:http://localhost:4317}
-      transport: grpc
-    logging:
-      endpoint: ${OTEL_COLLECTOR_ENDPOINT:http://localhost:4317}
-      transport: grpc 
+#   otlp:
+#     metrics:
+#       export:
+#         step: 30s
+#         url: ${OTEL_COLLECTOR_ENDPOINT:http://localhost:4317}
+#     tracing:
+#       endpoint: ${OTEL_COLLECTOR_ENDPOINT:http://localhost:4317}
+#       transport: grpc
+#     logging:
+#       endpoint: ${OTEL_COLLECTOR_ENDPOINT:http://localhost:4317}
+#       transport: grpc 
 
 logging:
   config: ${CONFIG_SERVER_URL:http://localhost:8888}/${spring.application.name}/default/${spring.cloud.config.label}/log4j2.xml
@@ -49,4 +49,4 @@ otel:
     otlp:
       endpoint: ${OTEL_COLLECTOR_ENDPOINT:http://localhost:4317}
       protocol: grpc
-      interval: 30000
+      interval: 10000
