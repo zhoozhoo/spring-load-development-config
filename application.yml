@@ -50,3 +50,12 @@ otel:
       endpoint: ${OTEL_COLLECTOR_ENDPOINT:http://localhost:4317}
       protocol: grpc
       interval: 10000
+      logs:
+        endpoint: ${OTEL_COLLECTOR_ENDPOINT:http://localhost:4317}
+        protocol: grpc
+      metrics:
+        endpoint: ${OTEL_COLLECTOR_ENDPOINT:http://localhost:4317}
+        protocol: grpc
+      traces:
+        endpoint: ${OTEL_COLLECTOR_ENDPOINT:http://localhost:4317}
+        protocol: grpc
