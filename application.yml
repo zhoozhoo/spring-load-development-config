@@ -47,15 +47,15 @@ log4j2:
 otel:
   exporter:
     otlp:
-      endpoint: ${OTEL_COLLECTOR_ENDPOINT:http://localhost:4317}
+      endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4317}
       protocol: grpc
       interval: 10000
-      logs:
-        endpoint: ${OTEL_COLLECTOR_ENDPOINT:http://localhost:4317}
-        protocol: grpc
-      metrics:
-        endpoint: ${OTEL_COLLECTOR_ENDPOINT:http://localhost:4317}
-        protocol: grpc
-      traces:
-        endpoint: ${OTEL_COLLECTOR_ENDPOINT:http://localhost:4317}
-        protocol: grpc
+    #   logs:
+    #     endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4317}
+    #     protocol: grpc
+    #   metrics:
+    #     endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4317}
+    #     protocol: grpc
+    #   traces:
+    #     endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4317}
+    #     protocol: grpc
