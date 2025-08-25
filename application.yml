@@ -22,6 +22,15 @@ management:
   metrics:
     enable:
       all: true
+    tags:
+      application: ${spring.application.name}
+      service: ${spring.application.name}
+      environment: ${SPRING_PROFILES_ACTIVE:local}
+    distribution:
+      percentiles-histogram:
+        http:
+          server:
+            requests: 'true'
   tracing:
     sampling:
       probability: 1
@@ -52,6 +61,13 @@ otel:
       endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4317}
       protocol: grpc
       interval: 10000
+  service:
+    name: ${spring.application.name}
+  resource:
+    attributes:
+      service.name: ${spring.application.name}
+      service.version: ${project.version:1.0.0}
+      service.environment: ${SPRING_PROFILES_ACTIVE:local}
   instrumentation:
     common:
       experimental:
