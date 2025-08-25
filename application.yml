@@ -25,6 +25,19 @@ management:
   tracing:
     sampling:
       probability: 1
+  info:
+    build:
+      enabled: true
+    defaults:
+      enabled: true
+    env:
+      enabled: true
+    java:
+      enabled: true
+    os:
+      enabled: true
+    process:
+      enabled: true
 
 logging:
   config: ${CONFIG_SERVER_URL:http://localhost:8888}/${spring.application.name}/default/${spring.cloud.config.label}/log4j2.xml
@@ -39,3 +52,9 @@ otel:
       endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4317}
       protocol: grpc
       interval: 10000
+  instrumentation:
+    common:
+      experimental:
+        controller-telemetry.enabled: true
+    micrometer:
+      enabled: true
