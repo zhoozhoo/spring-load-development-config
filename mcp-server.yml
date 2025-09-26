@@ -3,7 +3,7 @@ spring:
     mcp:
       server:
         name: reloading-mcp-server
-        version: 0.0.5-SNAPSHOT
+        version: 0.0.7-SNAPSHOT
         type: ASYNC
         sse-message-endpoint: /mcp/messages
         tool-change-notification: true
@@ -24,11 +24,7 @@ eureka:
       defaultZone: ${DISCOVERY_SERVER:http://localhost:8761}/eureka/ 
   instance:
     instance-id: ${spring.application.name}:${random.uuid}
-management:
-  otlp:
-    tracing:
-      endpoint: ${TRACING_SERVER:http://localhost:4317/}
-      transport: grpc
+
 ---
 spring:
   config:
