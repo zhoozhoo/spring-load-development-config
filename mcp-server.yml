@@ -5,6 +5,7 @@ spring:
         name: reloading-mcp-server
         version: 0.0.7-SNAPSHOT
         type: ASYNC
+        sse-endpoint: /sse
         sse-message-endpoint: /mcp/messages
         tool-change-notification: true
         capabilities:
