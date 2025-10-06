@@ -76,7 +76,7 @@ spring:
             - id: mcp-server
               uri: lb://mcp-server
               predicates:
-                - Path=/mcp/**
+                - Path=/mcp/**,/sse/**
               filters:
                 - TokenForwarding
                 - TokenRelay=
@@ -84,9 +84,6 @@ spring:
                   args:
                     name: mcpCircuitBreaker
                 - Retry=1
-              metadata:
-                connect-timeout: 45000
-                response-timeout: 45000
             - id: fallback-route
               order: 100
               uri: no://op
