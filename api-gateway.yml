@@ -84,17 +84,6 @@ spring:
                   args:
                     name: mcpCircuitBreaker
                 - Retry=1
-            - id: mcp-server-sse
-              uri: lb://mcp-server
-              predicates:
-                - Path=/sse/**
-              filters:
-                - TokenForwarding
-                - TokenRelay=
-                - name: CircuitBreaker
-                  args:
-                    name: mcpSseCircuitBreaker
-                    fallbackUri: forward:/fallback
               metadata:
                 connect-timeout: 45000
                 response-timeout: 45000
