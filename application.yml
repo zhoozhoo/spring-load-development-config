@@ -60,19 +60,18 @@ otel:
     otlp:
       endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4317}
       protocol: grpc
+  instrumentation:
+    micrometer:
+      enabled: true
+    runtime-telemetry:
+      enabled: false
+  metric:
+    export:
       interval: 10000
-  service:
-    name: ${spring.application.name}
   resource:
     attributes:
       service:
         name: ${spring.application.name}
         version: ${project.version:0.0.8-SNAPSHOT}
-  instrumentation:
-    common:
-      experimental:
-        controller-telemetry.enabled: true
-    micrometer:
-      enabled: true
-    runtime-telemetry:
-      enabled: false
+  service:
+    name: ${spring.application.name}
