@@ -2,9 +2,9 @@ server:
   port: 8080
 
 management:
-  metrics:
-    export:
-      simple:
+  simple:
+    metrics:
+      export:
         enabled: false
   
 spring:
