@@ -1,11 +1,5 @@
 server:
   port: 8080
-
-management:
-  simple:
-    metrics:
-      export:
-        enabled: false
   
 spring:
   security:
