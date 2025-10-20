@@ -31,6 +31,13 @@ management:
         http:
           server:
             requests: 'true'
+    export:
+      otlp:
+        enabled: true
+        url: http://otel-collector:4318/v1/metrics
+        step: 10s
+        resource-attributes:
+          service.name: ${spring.application.name}
   tracing:
     sampling:
       probability: 1
