@@ -8,6 +8,9 @@ spring:
       label: main
       allow-override: true
       override-none: true
+  threads:
+    virtual:
+      enabled: true
 
 management:
   endpoint:
