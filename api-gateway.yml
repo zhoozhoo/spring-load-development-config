@@ -40,7 +40,7 @@ spring:
             - id: loads-service
               uri: lb://loads-service
               predicates:
-                - Path=/api/loads/**,/api/groups/**,/api/shots/**,/loads-service/v3/api-docs
+                - Path=/api/loads/**,/api/groups/**,/api/shots/**,/loads-service/v3/api-docs,/api/jsr385/loads/**,/api/jsr385/groups/**,/api/jsr385/shots/**
               filters:
                 - StripPrefix=1
                 - TokenForwarding
