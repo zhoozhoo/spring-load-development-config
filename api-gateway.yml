@@ -64,7 +64,7 @@ spring:
             - id: components-service
               uri: lb://components-service
               predicates:
-                - Path=/api/bullets/**,/api/cases/**,/api/powders/**,/api/primers/**,/components-service/v3/api-docs
+                - Path=/api/projectiles/**,/api/cases/**,/api/propellants/**,/api/primers/**,/components-service/v3/api-docs
               filters:
                 - StripPrefix=1
                 - TokenForwarding
