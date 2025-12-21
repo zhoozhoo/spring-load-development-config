@@ -56,17 +56,17 @@ management:
     logging:
       export:
         otlp:
-          endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4317/v1/logs}
+          endpoint: ${OTEL_EXPORTER_OTLP_LOGS_ENDPOINT:http://localhost:4317/v1/logs}
           transport: grpc
     tracing:
       export:
         otlp:
-          endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4317}
+          endpoint: ${OTEL_EXPORTER_OTLP_TRACING_ENDPOINT:http://localhost:4317}
           transport: grpc
   otlp:
     metrics:
       export:
-        url: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4318/v1/metrics}
+        url: ${OTEL_EXPORTER_OTLP_METRICS_ENDPOINT:http://localhost:4318/v1/metrics}
         step: 10s
   tracing:
     sampling:
