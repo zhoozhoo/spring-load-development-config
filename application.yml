@@ -22,21 +22,6 @@ management:
     web:
       exposure:
         include: "*"
-  metrics:
-    enable:
-      all: true
-    tags:
-      application: ${spring.application.name}
-      service: ${spring.application.name}
-      environment: ${SPRING_PROFILES_ACTIVE:local}
-    distribution:
-      percentiles-histogram:
-        http:
-          server:
-            requests: 'true'
-  tracing:
-    sampling:
-      probability: 1
   info:
     build:
       enabled: true
@@ -50,6 +35,42 @@ management:
       enabled: true
     process:
       enabled: true
+  metrics:
+    enable:
+      all: true
+    tags:
+      application: ${spring.application.name}
+      service: ${spring.application.name}
+      environment: ${SPRING_PROFILES_ACTIVE:local}
+    distribution:
+      percentiles-histogram:
+        http:
+          server:
+            requests: 'true'
+  observations:
+    annotations:
+      enabled: true
+    enable:
+      all: true
+  opentelemetry:
+    logging:
+      export:
+        otlp:
+          endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4317/v1/logs}
+          transport: grpc
+    tracing:
+      export:
+        otlp:
+          endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4317}
+          transport: grpc
+  otlp:
+    metrics:
+      export:
+        url: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4318/v1/metrics}
+        step: 10s
+  tracing:
+    sampling:
+      probability: 1
 
 logging:
   config: ${CONFIG_SERVER_URL:http://localhost:8888}/${spring.application.name}/default/${spring.cloud.config.label}/log4j2.yaml
@@ -57,24 +78,3 @@ logging:
 log4j2:
   Configuration:
     allowedProtocols: "http,https,file,jar"
-
-otel:
-  exporter:
-    otlp:
-      endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4317}
-      protocol: grpc
-  instrumentation:
-    micrometer:
-      enabled: true
-    runtime-telemetry:
-      enabled: false
-  metric:
-    export:
-      interval: 10000
-  resource:
-    attributes:
-      service:
-        name: ${spring.application.name}
-        version: ${project.version:0.0.8-SNAPSHOT}
-  service:
-    name: ${spring.application.name}
