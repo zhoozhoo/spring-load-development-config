@@ -31,7 +31,7 @@ spring:
     keycloak:
       base-url: ${KEYCLOAK_BASE_URL:http://localhost:7080}             
   reactor:
-    context-propagation: AUTO
+    context-propagation: LIMITED
   cloud:
     gateway:
       server:
